@@ -1,0 +1,27 @@
+import sys
+
+def solve():
+    # 모든 입력을 한꺼번에 읽어와서 공백 단위로 쪼개기
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+
+    n = int(input_data[0])
+    points = []
+
+    # x, y 좌표를 짝지어 리스트에 넣기 (정수로 변환 필수)
+    for i in range(n):
+        x = int(input_data[2 * i + 1])
+        y = int(input_data[2 * i + 2])
+        points.append((x, y))
+
+    # 정렬하기
+    points.sort()
+
+    result = []
+    for p in points:
+        result.append(f"{p[0]} {p[1]}")
+    
+    sys.stdout.write("\n".join(result) + "\n")
+
+solve()

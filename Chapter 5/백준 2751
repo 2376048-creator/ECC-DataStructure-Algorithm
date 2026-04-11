@@ -1,0 +1,23 @@
+import sys
+
+# 1. 입력 속도를 높이기 위해 sys.stdin.readline 사용
+input = sys.stdin.read
+
+def solve():
+    # 전체 입력을 한 번에 읽어와 공백 단위로 나눔
+    data = input().split()
+    
+    if not data:
+        return
+    
+    # 첫 번째 값은 N, 나머지는 정렬할 수들
+    n = int(data[0])
+    numbers = list(map(int, data[1:]))
+    
+    # 2. 파이썬의 내장 정렬 함수 사용 (O(N log N))
+    numbers.sort()
+    
+    # 3. 한꺼번에 출력하여 출력 속도 최적화
+    sys.stdout.write('\n'.join(map(str, numbers)) + '\n')
+
+solve()

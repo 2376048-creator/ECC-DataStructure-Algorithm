@@ -1,0 +1,5 @@
+def solution(numbers):
+    numbers = list(map(str, numbers)) # 1. 모든 숫자를 문자열로 변환
+    numbers.sort(key=lambda x: x*3, reverse=True) # 2. 각 문자열을 3번 반복한 값을 기준으로 내림차순 정렬
+    answer = ''.join(numbers) # 3. 정렬된 숫자를 하나로 합칩니다.
+    return str(int(answer))

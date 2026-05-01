@@ -1,5 +1,4 @@
 def solution(myString):
     splitted = myString.split('x')
     answer = sorted([s for s in splitted if s])
-    
     return answer

@@ -1,0 +1,12 @@
+def solution(word):
+    weights = [781, 156, 31, 6, 1]
+    vowels = {'A': 0, 'E': 1, 'I': 2, 'O': 3, 'U': 4}
+    
+    # 단어의 길이만큼 기본적으로 순서가 증가
+    answer = len(word)
+    
+    for i, char in enumerate(word):
+        # 현재 문자의 인덱스와 해당 자리의 가중치를 곱해서 더함
+        answer += weights[i] * vowels[char]
+        
+    return answer

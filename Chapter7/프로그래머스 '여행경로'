@@ -1,0 +1,30 @@
+from collections import defaultdict
+
+def solution(tickets):
+    # 그래프 구성 (출발지 -> [도착지들])
+    graph = defaultdict(list)
+    for start, end in tickets:
+        graph[start].append(end)
+        
+    # 도착지 리스트를 역순(내림차순)으로 정렬
+    for key in graph.keys():
+        graph[key].sort(reverse=True)
+        
+    # 스택 초기화
+    stack = ["ICN"]
+    path = []
+    
+    # 스택이 빌 때까지 탐색 진행
+    while stack:
+        top = stack[-1]
+        
+        # 현재 공항에서 출발하는 항공권이 없거나 다 썼다면 (막다른 길)
+        if top not in graph or len(graph[top]) == 0:
+            path.append(stack.pop())
+        # 아직 사용할 수 있는 항공권이 있다면
+        else:
+            # 도착지를 스택에 넣음 (가장 알파벳이 빠른 공항으로 이동)
+            stack.append(graph[top].pop())
+            
+    # 기록된 경로는 도착지부터 역순으로 저장되어 있으므로 뒤집어서 반환
+    return path[::-1]

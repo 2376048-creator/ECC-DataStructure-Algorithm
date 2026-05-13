@@ -6,8 +6,8 @@ def solution(word):
     answer = len(word)
 
     for i in range(len(word)):
-    char = word[i]
-     # 현재 문자의 인덱스와 해당 자리의 가중치를 곱해서 더함
-    answer += weights[i] * vowels[char]
+        char = word[i]
+        # 현재 문자의 인덱스와 해당 자리의 가중치를 곱해서 더함
+        answer += weights[i] * vowels[char]
 
     return answer

@@ -1,0 +1,26 @@
+from collections import deque
+
+def solution(n, vertex):
+    graph = [[] for _ in range(n + 1)]
+    for u, v in vertex:
+        graph[u].append(v)
+        graph[v].append(u)
+        
+    # 각 노드까지의 최단 거리를 저장할 배열 (-1은 미방문을 의미)
+    distances = [-1] * (n + 1)
+    distances[1] = 0  # 시작 노드인 1번 노드의 거리는 0
+    
+    queue = deque([1])
+    
+    while queue:
+        current = queue.popleft()
+        
+        for neighbor in graph[current]:
+            if distances[neighbor] == -1: 
+                distances[neighbor] = distances[current] + 1
+                queue.append(neighbor)
+                
+    max_dist = max(distances)            # 배열 내 최대 거리 탐색
+    answer = distances.count(max_dist)   # 최대 거리와 일치하는 노드 개수 카운트
+    
+    return answer

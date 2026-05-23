@@ -1,0 +1,20 @@
+def solution(name):
+    change_move = 0
+    for char in name:
+        change_move += min(ord(char) - ord('A'), ord('Z') - ord(char) + 1)
+        
+    n = len(name)
+    min_cursor_move = n - 1  
+    
+    for i in range(n):
+        next_idx = i + 1
+        while next_idx < n and name[next_idx] == 'A':
+            next_idx += 1
+
+        move_right_then_left = i * 2 + (n - next_idx)
+
+        move_left_then_right = (n - next_idx) * 2 + i
+
+        min_cursor_move = min(min_cursor_move, move_right_then_left, move_left_then_right)
+        
+    return change_move + min_cursor_move

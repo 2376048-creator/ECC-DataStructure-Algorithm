@@ -1,0 +1,15 @@
+def solution(n, lost, reserve):
+    real_lost = set(lost) - set(reserve)
+    real_reserve = set(reserve) - set(lost)
+    
+    sorted_lost = sorted(list(real_lost))
+    
+    for l in sorted_lost:
+        if l - 1 in real_reserve:
+            real_reserve.remove(l - 1)
+        elif l + 1 in real_reserve:
+            real_reserve.remove(l + 1)
+        else:
+            n -= 1
+            
+    return n
